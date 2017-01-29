@@ -9,7 +9,7 @@ You will find three configuration to choose from:
     This is used for testing the registry, without ssl and without authentication.
     Use this configuration just for testing the registry 
     and because docker by default want a secured connection to the registry 
-    you need to follow the steps [here](https://docs.docker.com/registry/insecure/)
+    you need to follow the steps [here](https://docs.docker.com/registry/insecure/#/deploying-a-plain-http-registry)
 
     The registry is available at ``127.0.0.1:5000``
 

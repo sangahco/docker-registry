@@ -24,6 +24,7 @@ services:
       - "5043:443"
     volumes:
       - ./nginx/tls:/etc/nginx/ssl
-      - ./nginx/conf:/etc/nginx/conf.d:ro
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - registry

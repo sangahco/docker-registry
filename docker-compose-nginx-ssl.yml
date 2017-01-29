@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  registry:
+    image: registry:2
+    container_name: "registry-srv"
+    volumes:
+      - "./registry:/var/lib/registry/"
+      - "./auth/:/auth/"
+    expose:
+      - 5000
+    restart: "unless-stopped"
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+
+  nginx:
+    build: ./nginx
+    container_name: "registry-nginx"
+    links:
+      - registry
+    ports:
+      - "5043:443"
+    volumes:
+      - ./nginx/tls:/etc/nginx/ssl
+      - ./nginx/conf:/etc/nginx/conf.d:ro
+    depends_on:
+      - registry

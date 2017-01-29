@@ -2,20 +2,10 @@ version: "2"
 
 services:
   registry:
-    image: "registry"
-    container_name: "registry"
+    image: registry:2
+    container_name: "registry-srv"
     volumes:
       - "./registry:/var/lib/registry/"
-      - "./letsencrypt/cachefile:/letsencrypt/cachefile"
-      - "./auth/:/auth/"
-
     ports:
-      - "443:5000"
-
+      - "127.0.0.1:5000:5000"
     restart: "unless-stopped"
-    environment:
-      - REGISTRY_HTTP_TLS_LETSENCRYPT_CACHEFILE=/letsencrypt/cachefile
-      - REGISTRY_HTTP_TLS_LETSENCRYPT_EMAIL=emawind84@gmail.com
-      - REGISTRY_AUTH=htpasswd
-      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
-      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm

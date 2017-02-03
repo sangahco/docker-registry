@@ -4,7 +4,7 @@
 
 You will find three configuration to choose from:
 
-- *docker-compose.yml*
+- **docker-compose.yml**
 
     This is used for testing the registry, without ssl and without authentication.
     Use this configuration just for testing the registry 
@@ -13,7 +13,7 @@ You will find three configuration to choose from:
 
     The registry is available at ``127.0.0.1:5000``
 
-- *docker-compose-ssl.yml*
+- **docker-compose-ssl.yml**
 
     This version has ssl and authentication, it will use letsencrypt internally to generate 
     a valid ssl certification for the registry.
@@ -23,7 +23,7 @@ You will find three configuration to choose from:
     The port can be change but letsencrypt need the port `443`
     in order to generate the certificate the first time it is run (pull or push).
 
-- *docker-compose-nginx-ssl.yml*
+- **docker-compose-nginx-ssl.yml**
 
     Nginx over Docker Registry with secured connection and authentication required. 
     This is the recommended configuration to use in production,
@@ -46,11 +46,12 @@ You will find three configuration to choose from:
 
 - Install Docker
 - Install Docker Compose
-- If you want to add authentication to the registry run: 
-        
+- If you want to add authentication to the registry (recommended) run the following commands, under this folder 
+  replacing ``testuser`` and ``testpassword`` with a real user and password:
+  
         $ docker run --entrypoint htpasswd registry:2 -Bbn testuser testpassword > auth/htpasswd
-
-  replacing ``testuser`` and ``testpassword`` with a real user and password
+  
+  Just make sure that the folder ``auth`` has been created with a file ``htpasswd`` inside.
 - Start the registry with ``docker-compose up -d``
 - Check if the container is running with ``docker ps``
 
@@ -110,4 +111,4 @@ Check the registry log with:
 
     $ docker logs registry-srv | less
 
-### Awesome now we have our little tiny docker registry just for us yay!
+**Awesome now we have our little tiny docker registry just for us yay!**

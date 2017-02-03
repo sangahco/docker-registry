@@ -15,7 +15,8 @@ services:
     restart: "unless-stopped"
     environment:
       - REGISTRY_HTTP_TLS_LETSENCRYPT_CACHEFILE=/letsencrypt/cachefile
-      - REGISTRY_HTTP_TLS_LETSENCRYPT_EMAIL=emanuele.disco@emawind.com
+      - REGISTRY_HTTP_TLS_LETSENCRYPT_EMAIL=test@emawind.com
       - REGISTRY_AUTH=htpasswd
       - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
       - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+    restart: "unless-stopped"

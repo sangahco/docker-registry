@@ -8,7 +8,6 @@ services:
       - "./registry:/var/lib/registry/"
       - "./letsencrypt/cachefile:/letsencrypt/cachefile"
       - "./auth/:/auth/"
-
     ports:
       - "443:5000"
 

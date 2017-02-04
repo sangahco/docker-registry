@@ -7,13 +7,14 @@ services:
     volumes:
       - "./registry:/var/lib/registry/"
       - "./auth/:/auth/"
+      - "./config.yml:/etc/docker/registry/config.yml"
     expose:
       - 5000
-    restart: "unless-stopped"
     environment:
       - REGISTRY_AUTH=htpasswd
       - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
       - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
     restart: "unless-stopped"
 
   nginx:
@@ -23,10 +24,13 @@ services:
       - registry
     ports:
       - "5043:443"
+      - "5044:444"
     volumes:
       - ./nginx/tls:/etc/nginx/ssl
       - ./nginx/conf:/etc/nginx/conf.d
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - registry
+    external_links:
+      - registry-web:manager
     restart: "unless-stopped"

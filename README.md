@@ -6,7 +6,7 @@ You will find three configuration to choose from:
 
 - **docker-compose.yml**
 
-    This is used for testing the registry, without ssl and without authentication.
+    This is used for *testing the registry*, without ssl and without authentication.
     Use this configuration just for testing the registry 
     and because docker by default want a secured connection to the registry 
     you need to follow the steps [here](https://docs.docker.com/registry/insecure/#/deploying-a-plain-http-registry)
@@ -26,7 +26,7 @@ You will find three configuration to choose from:
 - **docker-compose-nginx-ssl.yml**
 
     Nginx over Docker Registry with secured connection and authentication required. 
-    This is the recommended configuration to use in production,
+    **This is the recommended configuration to use in production**,
     but you need to provide valid tls certificate (`cert.pem`) and key (`privkey.pem`).
     Before building put the certificate and key inside the `tls` folder under `nginx`.
 

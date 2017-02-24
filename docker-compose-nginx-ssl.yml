@@ -21,10 +21,10 @@ services:
     build: ./nginx
     container_name: "registry-nginx"
     ports:
-      - "5043:443"
-      - "5044:444"
+    - "5043:443"
+    - "5044:444"
     volumes:
-      - ${REGISTRY_SSL_CERT_PATH}:/etc/nginx/ssl
+    - ${REGISTRY_SSL_CERT_PATH}:/etc/nginx/ssl
     depends_on:
-      - registry
+    - registry
     restart: "unless-stopped"

@@ -17,7 +17,7 @@ services:
     restart: "unless-stopped"
 
   nginx:
-    build: ./nginx
+    build: nginx
     container_name: "registry-nginx"
     ports:
     - "5043:443"

@@ -23,7 +23,8 @@ services:
     - "5043:443"
     - "5044:444"
     volumes:
-    - ${REGISTRY_SSL_CERT_PATH}:/etc/nginx/ssl
+    - ${REGISTRY_SSL_CERT_PATH}:/etc/nginx/ssl/cert.pem
+    - ${REGISTRY_SSL_KEY_PATH}:/etc/nginx/ssl/privkey.pem
     depends_on:
     - registry
     restart: "unless-stopped"

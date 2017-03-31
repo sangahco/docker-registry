@@ -2,12 +2,12 @@ version: "2"
 
 services:
   registry:
-    image: registry:2
+    build: registry
     container_name: "registry-srv"
     volumes:
-      - "./registry:/var/lib/registry/"
+      - "${REGISTRY_HOME}:/var/lib/registry/"
+      - "${HTPASSWD_HOME}:/auth/"
       - "./letsencrypt/cachefile:/letsencrypt/cachefile"
-      - "./auth/:/auth/"
     ports:
       - "443:5000"
 

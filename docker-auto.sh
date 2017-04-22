@@ -3,7 +3,7 @@
 set -e
 
 DOCKER_COMPOSE_VERSION="1.11.2"
-CONF_ARG="-f docker-compose.yml"
+CONF_ARG="-f docker-compose-dev.yml"
 SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd "$SCRIPT_BASE_PATH"
 
@@ -31,6 +31,12 @@ echo "  --help         Show this help message"
 echo
 echo "Commands:"
 echo "  up             Start the services"
+echo "  down            Stop the services"
+echo "  ps              Show the status of the services"
+echo "  logs            Follow the logs on console"
+echo "  clean           Remove deleted images from the filesystem"
+echo "  remove-all      Remove all containers"
+echo "  stop-all        Stop all containers running"
 }
 
 if [ $# -eq 0 ]; then
@@ -86,6 +92,9 @@ elif [ "$1" == "logs" ]; then
     docker-compose $CONF_ARG logs -f --tail 200 "$@"
     exit 0
 
+elif [ "$1" == "clean" ]; then
+    docker-compose $CONF_ARG exec registry registry garbage-collect /etc/docker/registry/config.yml
+    exit 0
 fi
 
 docker-compose $CONF_ARG "$@"

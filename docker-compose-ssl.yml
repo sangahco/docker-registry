@@ -16,11 +16,7 @@ services:
       - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
       - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
     networks:
-      registry_default:
+      default:
         aliases: 
         - registry-srv
     restart: "unless-stopped"
-
-networks:
-  registry_default:
-    external: false

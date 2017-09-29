@@ -3,7 +3,6 @@ version: "2"
 services:
   registry:
     build: registry
-    container_name: "registry-srv"
     volumes:
     - "${REGISTRY_HOME}:/var/lib/registry/"
     - "${HTPASSWD_HOME}:/auth/"
@@ -14,11 +13,14 @@ services:
     - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
     - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
     - REGISTRY_STORAGE_DELETE_ENABLED=true
+    networks:
+      registry_default:
+        aliases: 
+        - registry-srv
     restart: "unless-stopped"
 
   nginx:
     build: nginx
-    container_name: "registry-nginx"
     ports:
     - "5043:443"
     - "5044:444"
@@ -28,3 +30,7 @@ services:
     depends_on:
     - registry
     restart: "unless-stopped"
+
+networks:
+  registry_default:
+    external: false

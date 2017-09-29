@@ -3,9 +3,16 @@ version: "2"
 services:
   registry:
     build: registry
-    container_name: "registry-srv"
     volumes:
       - "${REGISTRY_HOME}:/var/lib/registry/"
     ports:
       - "127.0.0.1:5000:5000"
+    networks:
+      registry_default:
+        aliases: 
+        - registry-srv
     restart: "unless-stopped"
+
+networks:
+  registry_default:
+    external: false

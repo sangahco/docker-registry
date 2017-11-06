@@ -81,6 +81,7 @@ case $i in
         exit 1
         ;;
     *)
+        break
         ;;
 esac
 done

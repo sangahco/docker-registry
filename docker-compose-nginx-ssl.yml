@@ -22,11 +22,10 @@ services:
   nginx:
     build: nginx
     ports:
-    - "5043:443"
-    - "5044:444"
+    - "${REGISTRY_PORT}:443"
     volumes:
-    - ${REGISTRY_SSL_CERT_PATH}:/etc/nginx/ssl/cert.pem
-    - ${REGISTRY_SSL_KEY_PATH}:/etc/nginx/ssl/privkey.pem
+    - ${REGISTRY_SSL_CERT_PATH}:/etc/nginx/ssl/nginx.crt
+    - ${REGISTRY_SSL_KEY_PATH}:/etc/nginx/ssl/nginx.key
     depends_on:
     - registry
     restart: "unless-stopped"

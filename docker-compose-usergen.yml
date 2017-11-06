@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+
+  registry:
+    build: registry
+    entrypoint: htpasswd
+    volumes:
+    - ./auth:/auth
+    command: "-Bbn ${BASIC_USER} ${BASIC_PASSWORD}"

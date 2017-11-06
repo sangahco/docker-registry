@@ -5,7 +5,7 @@ services:
     build: registry
     volumes:
     - "${REGISTRY_HOME}:/var/lib/registry/"
-    - "${HTPASSWD_HOME}:/auth/"
+    - "${HTPASSWD_PATH}:/auth/htpasswd"
     expose:
     - 5000
     environment:

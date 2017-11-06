@@ -5,7 +5,7 @@ services:
     build: registry
     volumes:
       - "${REGISTRY_HOME}:/var/lib/registry/"
-      - "${HTPASSWD_HOME}:/auth/"
+      - "${HTPASSWD_PATH}:/auth/htpasswd"
       - "./letsencrypt/cachefile:/letsencrypt/cachefile"
     ports:
       - "443:5000"

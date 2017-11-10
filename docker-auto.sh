@@ -54,6 +54,7 @@ echo "  logs            Follow the logs on console"
 echo "  clean           Remove deleted images from the filesystem"
 echo "  remove-all      Remove all containers"
 echo "  stop-all        Stop all containers running"
+echo "  create-user     Create a user-password pair to use inside the password file"
 }
 
 if [ $# -eq 0 ]; then
@@ -112,6 +113,17 @@ elif [ "$1" == "logs" ]; then
 
 elif [ "$1" == "clean" ]; then
     docker-compose $CONF_ARG exec registry registry garbage-collect /etc/docker/registry/config.yml
+    exit 0
+
+elif [ "$1" == "create-user" ]; then
+    if [ $# -lt 3 ]; then
+        echo "Usage:  $(basename "$0") create-user [USER] [PASSWORD]"
+        exit 1
+    fi
+    shift
+    export BASIC_USER=$1
+    export BASIC_PASSWORD=$2
+    docker-compose -f docker-compose-htpasswd.yml run htpasswd
     exit 0
 fi
 

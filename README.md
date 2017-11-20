@@ -25,18 +25,18 @@ You will find three configuration to choose from:
 
 - **docker-compose-ssl.yml**
 
-    This version has ssl and authentication, it will use letsencrypt internally to generate 
-    a valid ssl certification for the registry.
+    This version has ssl and authentication, **it will use letsencrypt internally to generate 
+    a valid ssl certification for the registry**.
 
     The registry is available at the port set in `REGISTRY_PORT`.
 
-    > The port can be change but in order to generate ssl certificates we need to set REGISTRY_PORT=443
-    > the first time it is run (pull or push) or it will fail.
+    > **IMPORTANT** The port can be change but in order to generate ssl certificates we need to set `REGISTRY_PORT=443` the first time it is run (pull or push) or it will fail.
 
 - **docker-compose-nginx-ssl.yml**
 
-    Nginx over Docker Registry with secured connection and authentication required. 
-    **This is the recommended configuration to use in production**.
+    > **This is the recommended configuration to use in production**
+
+    Nginx over Docker Registry with secured connection and authentication required.
     Set the variable `REGISTRY_SSL_CERT_PATH` and `REGISTRY_SSL_KEY_PATH` to the location of 
     ssl certificate and key file.
 

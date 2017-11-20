@@ -1,6 +1,6 @@
 # Docker Registry
 
-Like the title this is a Docker registry with some ready to use configurations.
+Like the title say, this is a Docker registry with some ready to use configurations.
 
 ## Important About Secure Connection SSL
 

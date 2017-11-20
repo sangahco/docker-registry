@@ -1,4 +1,14 @@
-# How-to Install our Docker Registry
+# Docker Registry
+
+Like the title this is a Docker registry with some ready to use configurations.
+
+## Important About Secure Connection SSL
+
+> The SSL configuration has a default certificate and key that can be used 
+> in case a proper one is not provided,
+> but is only valid for the local domain `127.0.0.1`.
+> This imply that for using the registry with the default certificate you need to set this registry as insecure or docker will not connect to the registry.
+> https://docs.docker.com/registry/insecure/
 
 ## What configuration I have to use?
 

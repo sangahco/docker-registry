@@ -11,26 +11,26 @@ You will find three configuration to choose from:
     and because docker by default want a secured connection to the registry 
     you need to follow the steps [here](https://docs.docker.com/registry/insecure/#/deploying-a-plain-http-registry)
 
-    The registry is available at ``127.0.0.1:5000``
+    The registry is available at the port set in `REGISTRY_PORT`.
 
 - **docker-compose-ssl.yml**
 
     This version has ssl and authentication, it will use letsencrypt internally to generate 
     a valid ssl certification for the registry.
 
-    The registry is available at `[DOMAIN]:443`
+    The registry is available at the port set in `REGISTRY_PORT`.
 
-    The port can be change but letsencrypt need the port `443`
-    in order to generate the certificate the first time it is run (pull or push).
+    > The port can be change but in order to generate ssl certificates we need to set REGISTRY_PORT=443
+    > the first time it is run (pull or push) or it will fail.
 
 - **docker-compose-nginx-ssl.yml**
 
     Nginx over Docker Registry with secured connection and authentication required. 
-    **This is the recommended configuration to use in production**,
-    but you need to provide valid tls certificate (`cert.pem`) and key (`privkey.pem`).
-    Before building put the certificate and key inside the `tls` folder under `nginx`.
+    **This is the recommended configuration to use in production**.
+    Set the variable `REGISTRY_SSL_CERT_PATH` and `REGISTRY_SSL_KEY_PATH` to the location of 
+    ssl certificate and key file.
 
-    The registry is available at `[DOMAIN]:5043`
+    The registry is available at the port set in `REGISTRY_PORT`.
 
 ---
 

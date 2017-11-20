@@ -7,7 +7,7 @@ services:
     - "${REGISTRY_HOME}:/var/lib/registry/"
     - "${HTPASSWD_PATH}:/auth/htpasswd"
     expose:
-    - 5000
+    - "5000"
     environment:
     - REGISTRY_AUTH=htpasswd
     - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
@@ -24,8 +24,8 @@ services:
     ports:
     - "${REGISTRY_PORT}:443"
     volumes:
-    - ${REGISTRY_SSL_CERT_PATH}:/etc/nginx/ssl/nginx.crt
-    - ${REGISTRY_SSL_KEY_PATH}:/etc/nginx/ssl/nginx.key
+    - "${REGISTRY_SSL_CERT_PATH}:/etc/nginx/ssl/nginx.crt:ro"
+    - "${REGISTRY_SSL_KEY_PATH}:/etc/nginx/ssl/nginx.key:ro"
     depends_on:
     - registry
     restart: "unless-stopped"

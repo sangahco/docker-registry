@@ -69,6 +69,8 @@ Remember to restart the service with:
 
 ## Test
 
+> **Default credentials are username** `registry` **password** `changeme`.
+
 In case you secured the registry you need to login first and than you can pull and push images,
 otherwise skip the login step.
 

@@ -2,9 +2,6 @@
 
 set -e
 
-SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-cd "$SCRIPT_BASE_PATH"
-
 ###############################################
 # Extract Environment Variables from .env file
 # Ex. REGISTRY_URL="$(getenv REGISTRY_URL)"
@@ -15,8 +12,11 @@ getenv(){
 }
 
 DOCKER_COMPOSE_VERSION="1.14.0"
-CONF_ARG="-f docker-compose-nginx-ssl.yml"
+CONF_ARG="-f docker-compose-basic-auth.yml"
+SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 REGISTRY_URL="$(getenv REGISTRY_URL)"
+
+cd "$SCRIPT_BASE_PATH"
 
 ########################################
 # Install docker-compose
@@ -30,9 +30,9 @@ install_docker_compose() {
 }
 
 if ! command -v docker-compose >/dev/null 2>&1; then
-    install_docker_compose || true
+    install_docker_compose
 elif [[ "$(docker-compose version --short)" != "$DOCKER_COMPOSE_VERSION" ]]; then
-    install_docker_compose || true
+    install_docker_compose
 fi
 
 usage() {
@@ -41,6 +41,7 @@ echo
 echo "Mode:"
 echo "  --ssl-nginx    (default) Encrypted connection and basic auth with Nginx"
 echo "  --ssl          Standalone with encrypted connection and basic auth"
+echo "  --basic-auth   Only basic authentication without encryption"
 echo "  --dev          Development mode no encryption and no basic auth"
 echo
 echo "Options:"
@@ -71,6 +72,10 @@ case $i in
         ;;
     --ssl)
         CONF_ARG="-f docker-compose-ssl.yml"
+        shift
+        ;;
+    --basic-auth)
+        CONF_ARG="-f docker-compose-basic-auth.yml"
         shift
         ;;
     --dev)

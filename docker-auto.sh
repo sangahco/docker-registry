@@ -12,7 +12,7 @@ getenv(){
 }
 
 DOCKER_COMPOSE_VERSION="1.14.0"
-CONF_ARG="-f docker-compose-basic-auth.yml"
+CONF_ARG="-f docker-compose-nginx-ssl.yml"
 SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 REGISTRY_URL="$(getenv REGISTRY_URL)"
 

@@ -17,6 +17,8 @@ services:
       default:
         aliases: 
         - registry-srv
+    extends: 
+      service: logging
     restart: "unless-stopped"
 
   nginx:
@@ -28,4 +30,13 @@ services:
     - "${REGISTRY_SSL_KEY_PATH}:/etc/nginx/ssl/nginx.key:ro"
     depends_on:
     - registry
+    extends: 
+      service: logging
     restart: "unless-stopped"
+
+  logging:
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"

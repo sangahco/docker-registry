@@ -118,6 +118,9 @@ elif [ "$1" == "logs" ]; then
     exit 0
 
 elif [ "$1" == "clean" ]; then
+    read -p "Enter Registry Username: " REGISTRY_USER
+    read -s -p "Enter Registry Password: " REGISTRY_PASS
+    docker run --rm anoxis/registry-cli -r https://registry.sangah.com -l "$REGISTRY_USER:$REGISTRY_PASS" --delete --num 5
     docker-compose $CONF_ARG exec registry registry garbage-collect /etc/docker/registry/config.yml
     exit 0
 
